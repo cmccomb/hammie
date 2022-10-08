@@ -58,12 +58,14 @@ def ask_who(message, say):
     
 @app.message(re.compile("^(debug_regex)"))
 def debug_regex(say, context):
-    say(json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t"))
+    jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
+    say(f"```{jstring}```")
   
     
 @app.message("debug_string")
 def debug_string(message, say):
-    say(json.dumps(message, indent="\t"))
+    jstring = json.dumps(message, indent="\t")
+    say(f"```{jstring}```")
 
     
 # Start your app
