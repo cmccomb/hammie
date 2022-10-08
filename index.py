@@ -1,13 +1,13 @@
 import re
 import os
 import slack_bolt
-from os.path import join, dirname
-from dotenv import load_dotenv
+import os.path
+import dotenv
 import json
 import random
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+# Set up dotenv
+dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 # Initializes your app with your bot token and signing secret
 app = slack_bolt.App(
@@ -56,12 +56,12 @@ def ask_who(message, say):
     
     
 @app.message(re.compile("^debug_regex"))
-def debug(say, context):
+def debug_regex(say, context):
   say(json.dumps(context))
   
     
 @app.message("debug_string")
-def debug(message, say):
+def debug_string(message, say):
   say(json.dumps(message))
 
     
