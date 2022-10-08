@@ -60,6 +60,7 @@ def ask_who(message, say):
 def debug_regex(say, context):
     context['logger'] = ''
     context['client'] = ''
+    context['ack'] = ''
     say(json.dumps(context))
   
     
