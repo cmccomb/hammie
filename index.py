@@ -46,8 +46,8 @@ def ask_who(message, say):
                     "blocks": [
                         {
                             "type": "image",
-                            "image_url": " https://www.usmint.gov/wordpress/wp-content/uploads/2021/12/2022-american-women-quarters-coin-sally-ride-uncirculated-reverse-768x768.jpg",
-                            "alt_text": "heads"
+                            "image_url": "https://www.usmint.gov/wordpress/wp-content/uploads/2021/12/2022-american-women-quarters-coin-sally-ride-uncirculated-reverse-768x768.jpg",
+                            "alt_text": "tails"
                         }
                     ]
                 }
