@@ -19,6 +19,7 @@ app = slack_bolt.App(
 @app.message(re.compile("(hi|hello|hey)"))
 def say_hello_regex(say, context):
     greeting = context['matches'][0]
+    print(context)
     say(f"{greeting}, how are you?")
 
 
