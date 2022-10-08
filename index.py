@@ -6,15 +6,6 @@ import dotenv
 import json
 import random
 
-from json import JSONEncoder
-
-class LogEncoder(JSONEncoder):
-    def default(self, obj):
-        try:
-            return obj.__dict__ ['records']
-        except:
-            return obj.__dict__
-
 # Set up dotenv
 dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
@@ -67,7 +58,8 @@ def ask_who(message, say):
     
 @app.message(re.compile("^(debug_regex)"))
 def debug_regex(say, context):
-    say(LogEncoder().encode(context))
+    context['logger'] = ''
+    say(json.dumps(context))
   
     
 @app.message("debug_string")
