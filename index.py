@@ -23,14 +23,6 @@ def say_hello_regex(say, context):
     say(f"{greeting}, how are you?")
 
 
-@app.message(re.compile(".*"))
-def last_resort(say, context):
-    message = context['matches'][0]
-    print(context)
-    say(f"Sorry, but I have no idea what you mean by \"{message}\". Can you try to ask it in a different way?")
-
-
-
 @app.message("flip a coin")
 def ask_who(message, say):
     if random.random() < 0.5:
@@ -40,7 +32,7 @@ def ask_who(message, say):
                     "blocks": [
                         {
                             "type": "image",
-                            "image_url": "https://www.usmint.gov/wordpress/wp-content/uploads/2021/12/2022-american-women-quarters-coin-uncirculated-obverse-philadelphia-768x768.jpg",
+                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/2006_Quarter_Proof.png/780px-2006_Quarter_Proof.png",
                             "alt_text": "heads"
                         }
                     ]
@@ -54,7 +46,7 @@ def ask_who(message, say):
                     "blocks": [
                         {
                             "type": "image",
-                            "image_url": "https://www.usmint.gov/wordpress/wp-content/uploads/2021/12/2022-american-women-quarters-coin-sally-ride-uncirculated-reverse-768x768.jpg",
+                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Pennsylvania_quarter%2C_reverse_side%2C_1999.png",
                             "alt_text": "tails"
                         }
                     ]
@@ -73,6 +65,14 @@ def debug_regex(say, context):
 def debug_string(message, say):
     jstring = json.dumps(message, indent="\t")
     say(f"```{jstring}```")
+
+
+@app.message(re.compile(".*"))
+def last_resort(say, context):
+    message = context['matches'][0]
+    print(context)
+    say(f"Sorry, but I have no idea what you mean by \"{message}\". Can you try to ask it in a different way?")
+
 
     
 # Start your app
