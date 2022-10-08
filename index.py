@@ -55,7 +55,7 @@ def ask_who(message, say):
             ))
     
     
-@app.message(re.compile("^debug_regex"))
+@app.message(re.compile("^(debug_regex)"))
 def debug_regex(say, context):
   say(json.dumps(context))
   
