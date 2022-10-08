@@ -23,7 +23,7 @@ def say_hello_regex(say, context):
     say(f"{greeting}, how are you?")
 
 
-@app.message(re.compile("*"))
+@app.message(re.compile(".*"))
 def last_resort(say, context):
     message = context['matches'][0]
     print(context)
