@@ -22,7 +22,7 @@ app = slack_bolt.App(
 # Basic greeting
 @app.message(re.compile("(hi|hello|hey|yo)", re.IGNORECASE))
 def greetings(say, context):
-    """`hi`, `hello`, `hey`, `yo`: I can respond to these greetings, and more!"""
+    """👋 `hi`, `hello`, `hey`, `yo`: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
     say(f"{greeting} <@{context['user_id']}>!")
 
@@ -33,7 +33,7 @@ help_list.append(greetings.__doc__)
 # Flip a coin and show result as image
 @app.message("^(flip|coin|quarter)$")
 def ask_who(message, say):
-    """`flip`, `coin`, `quarter`: I will flip a coin for you."""
+    """🪙 `flip`, `coin`, `quarter`: I will flip a coin for you."""
     if random.random() < 0.5:
         say(json.loads(
             """
@@ -83,9 +83,9 @@ def debug_string(message, say):
 # Show structure of a string message
 @app.message(re.compile("^(help|about|info)$"))
 def dump_help(message, say):
-    """`about`, `help`, `info`: I will print this help table."""
+    """ℹ️ `about`, `help`, `info`: I will print this help table."""
     raw_json = {
-        "blocks": []
+        "blocks": [text_block("Here are a few of the things I can do!")]
     }
     for help_string in help_list:
         raw_json['blocks'].append(text_block(help_string))
