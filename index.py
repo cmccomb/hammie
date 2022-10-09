@@ -23,16 +23,13 @@ app = slack_bolt.App(
 # Basic greeting
 @app.message(re.compile("(hi|hello|hey|yo)", re.IGNORECASE))
 def greetings(say, context):
-    """
-    I can respond to a variety of casual greetings, including hi, hello, hey, and yo.
+    """I can respond to a variety of casual greetings, including hi, hello, hey, and yo.
     """
     greeting = context['matches'][0]
-    print(context)
     say(f"{greeting} <@{context['user_id']}>!")
 
 
-strhelp = pydoc.render_doc("greetings", "Help on %s")
-help_list.append(strhelp)
+help_list.append(help(greetings))
 
 
 # Flip a coin and show result as image
