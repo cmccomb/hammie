@@ -20,7 +20,7 @@ app = slack_bolt.App(
 
 
 # Check if greetings
-def is_greeting(phrase) -> Bool:
+def is_greeting(phrase) -> bool:
     bool(re.compile("(hi|hello|hey|yo)", re.IGNORECASE).search(phrase))
 
 
