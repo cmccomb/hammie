@@ -22,7 +22,7 @@ app = slack_bolt.App(
 # Basic greeting
 @app.message(re.compile("(hi|hello|hey|yo)", re.IGNORECASE))
 def greetings(say, context):
-    """I can respond to a variety of casual greetings, including hi, hello, hey, and yo."""
+    """`hi`, `hello`, `hey`, `yo`: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
     say(f"{greeting} <@{context['user_id']}>!")
 
@@ -31,9 +31,9 @@ help_list.append(greetings.__doc__)
 
 
 # Flip a coin and show result as image
-@app.message("flip a coin")
+@app.message("^(flip|coin|quarter)$")
 def ask_who(message, say):
-    """If you ask me to flip a coin, I will return a fair result."""
+    """`flip`, `coin`, `quarter`: I will flip a coin for you."""
     if random.random() < 0.5:
         say(json.loads(
             """
@@ -81,12 +81,26 @@ def debug_string(message, say):
 
 
 # Show structure of a string message
-@app.message("help")
+@app.message(re.compile("^(help|about|info)$"))
 def dump_help(message, say):
-    """I can print this help table."""
-    jstring = json.dumps(help_list, indent="\t")
-    say(f"```{jstring}```")
+    """`about`, `help`, `info`: I will print this help table."""
+    raw_json = {
+        "blocks": []
+    }
+    for help_string in help_list:
+        raw_json['blocks'].append(text_block(help_string))
+    # jstring = json.dumps(help_list, indent="\t")
+    say(f"```{raw_json}```")
 
+
+def text_block(markdown_string):
+    return {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": markdown_string
+        }
+    }
 
 help_list.append(dump_help.__doc__)
 
