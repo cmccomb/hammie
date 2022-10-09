@@ -19,8 +19,13 @@ app = slack_bolt.App(
 )
 
 
+# Check if greetings
+def is_greeting(phrase) -> Bool:
+    bool(re.compile("(hi|hello|hey|yo)", re.IGNORECASE).search(phrase))
+
+
 # Basic greeting
-@app.message(re.compile("(hi|hello|hey|yo)", re.IGNORECASE))
+@app.message([is_greeting])
 def greetings(say, context):
     """👋 `hi`, `hello`, `hey`, `yo`: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
