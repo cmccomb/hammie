@@ -16,11 +16,11 @@ app = slack_bolt.App(
 )
 
 # Basic greeting
-@app.message(re.compile("(hi|hello|hey)"))
+@app.message(re.compile("(hi|hello|hey)"), re.LOWERCASE)
 def say_hello_regex(say, context):
     greeting = context['matches'][0]
     print(context)
-    say(f"{greeting} <{context['user_id']}>, how are you?")
+    say(f"{greeting} <@{context['user_id']}>!")
 
 # Flip a coin and show result as image
 @app.message("flip a coin")
