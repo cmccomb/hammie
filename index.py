@@ -22,8 +22,7 @@ app = slack_bolt.App(
 # Basic greeting
 @app.message(re.compile("(hi|hello|hey|yo)", re.IGNORECASE))
 def greetings(say, context):
-    """I can respond to a variety of casual greetings, including hi, hello, hey, and yo.
-    """
+    """I can respond to a variety of casual greetings, including hi, hello, hey, and yo."""
     greeting = context['matches'][0]
     say(f"{greeting} <@{context['user_id']}>!")
 
@@ -34,6 +33,7 @@ help_list.append(greetings.__doc__)
 # Flip a coin and show result as image
 @app.message("flip a coin")
 def ask_who(message, say):
+    """If you ask me to flip a coin, I will return a fair result."""
     if random.random() < 0.5:
         say(json.loads(
             """
@@ -64,6 +64,8 @@ def ask_who(message, say):
         ))
 
 
+help_list.append(ask_who.__doc__)
+
 # Show structure of a regex context
 @app.message(re.compile("^(debug_regex)"))
 def debug_regex(say, context):
@@ -81,8 +83,12 @@ def debug_string(message, say):
 # Show structure of a string message
 @app.message("help")
 def dump_help(message, say):
+    "I can print this help table."
     jstring = json.dumps(help_list, indent="\t")
     say(f"```{jstring}```")
+
+
+help_list.append(ask_who.__doc__)
 
 
 # Catch all at the end and admit that it don't make no sense
