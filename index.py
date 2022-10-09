@@ -23,6 +23,16 @@ is_greeting = re.compile("(hi|hello|hey|yo)", re.IGNORECASE)
 is_anything = re.compile(".*")
 is_coinflip = re.compile("^(flip|coin|quarter)$")
 
+# Textblock
+def text_block(markdown_string):
+    return {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": markdown_string
+        }
+    }
+
 # Quarters
 quarter_heads = """
                 {
@@ -97,15 +107,6 @@ def dump_help(message, say):
         raw_json['blocks'].append(text_block(help_string))
     say(json.loads(json.dumps(raw_json)))
 
-
-def text_block(markdown_string):
-    return {
-        "type": "section",
-        "text": {
-            "type": "mrkdwn",
-            "text": markdown_string
-        }
-    }
 
 help_list.append(dump_help.__doc__)
 
