@@ -83,12 +83,12 @@ def debug_string(message, say):
 # Show structure of a string message
 @app.message("help")
 def dump_help(message, say):
-    "I can print this help table."
+    """I can print this help table."""
     jstring = json.dumps(help_list, indent="\t")
     say(f"```{jstring}```")
 
 
-help_list.append(ask_who.__doc__)
+help_list.append(dump_help.__doc__)
 
 
 # Catch all at the end and admit that it don't make no sense
