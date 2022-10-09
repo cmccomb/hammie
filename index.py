@@ -19,13 +19,12 @@ app = slack_bolt.App(
 )
 
 
-# Check if greetings
-def is_greeting(phrase) -> bool:
-    bool(re.compile("(hi|hello|hey|yo)", re.IGNORECASE).search(phrase))
-
+# Matches for checking
+is_greeting = re.compile("(hi|hello|hey|yo)", re.IGNORECASE)
+is_anything = re.compile(".*")
 
 # Basic greeting
-@app.message([is_greeting])
+@app.message(is_greeting)
 def greetings(say, context):
     """👋 `hi`, `hello`, `hey`, `yo`: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
@@ -110,7 +109,7 @@ help_list.append(dump_help.__doc__)
 
 
 # Catch all at the end and admit that it don't make no sense
-@app.message(re.compile(".*"))
+@app.message(is_anything)
 def last_resort(say, context):
     message = context['matches'][0]
     print(context)
