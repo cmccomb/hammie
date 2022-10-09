@@ -6,6 +6,7 @@ import dotenv
 import json
 import random
 
+help = []
 # Set up dotenv
 dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
@@ -17,11 +18,14 @@ app = slack_bolt.App(
 
 
 # Basic greeting
-@app.message(re.compile("(hi|hello|hey)", re.IGNORECASE))
+@app.message(re.compile("(hi|hello|hey|yo)", re.IGNORECASE))
 def say_hello_regex(say, context):
     greeting = context['matches'][0]
     print(context)
     say(f"{greeting} <@{context['user_id']}>!")
+
+
+help.append(help(say_hello_regex))
 
 
 # Flip a coin and show result as image
@@ -40,7 +44,7 @@ def ask_who(message, say):
                     ]
                 }
             """
-            ))
+        ))
     else:
         say(json.loads(
             """
@@ -54,7 +58,7 @@ def ask_who(message, say):
                     ]
                 }
             """
-            ))
+        ))
 
 
 # Show structure of a regex context
@@ -62,7 +66,7 @@ def ask_who(message, say):
 def debug_regex(say, context):
     jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
     say(f"```{jstring}```")
-  
+
 
 # Show structure of a string message
 @app.message("debug_string")
@@ -78,7 +82,7 @@ def last_resort(say, context):
     print(context)
     say(f"Sorry, but I have no idea what you mean by \"{message}\". Can you try to ask it in a different way?")
 
-    
+
 # Start the app
 if __name__ == "__main__":
     app.start(port=int(os.environ.get("PORT", 3000)))
