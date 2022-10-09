@@ -46,7 +46,7 @@ def ask_who(message, say):
                     "blocks": [
                         {
                             "type": "image",
-                            "image_url": "https://commons.wikimedia.org/wiki/File:1999_PA_Proof.png",
+                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/1999_PA_Proof.png",
                             "alt_text": "tails"
                         }
                     ]
