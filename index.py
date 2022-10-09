@@ -89,8 +89,7 @@ def dump_help(message, say):
     }
     for help_string in help_list:
         raw_json['blocks'].append(text_block(help_string))
-    # jstring = json.dumps(help_list, indent="\t")
-    say(f"```{raw_json}```")
+    say(json.load(raw_json))
 
 
 def text_block(markdown_string):
