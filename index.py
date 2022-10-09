@@ -23,6 +23,31 @@ is_greeting = re.compile("(hi|hello|hey|yo)", re.IGNORECASE)
 is_anything = re.compile(".*")
 is_coinflip = re.compile("^(flip|coin|quarter)$")
 
+# Quarters
+quarter_heads = """
+                {
+                    "blocks": [
+                        {
+                            "type": "image",
+                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/2006_Quarter_Proof.png/780px-2006_Quarter_Proof.png",
+                            "alt_text": "heads"
+                        }
+                    ]
+                }
+            """
+
+quarter_tails = """
+                {
+                    "blocks": [
+                        {
+                            "type": "image",
+                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/1999_PA_Proof.png",
+                            "alt_text": "tails"
+                        }
+                    ]
+                }
+            """
+
 # Basic greeting
 @app.message(is_greeting)
 def greetings(say, context):
@@ -39,36 +64,13 @@ help_list.append(greetings.__doc__)
 def ask_who(say, content):
     """🪙 `flip`, `coin`, `quarter`: I will flip a coin for you."""
     if random.random() < 0.5:
-        say(json.loads(
-            """
-                {
-                    "blocks": [
-                        {
-                            "type": "image",
-                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/2006_Quarter_Proof.png/780px-2006_Quarter_Proof.png",
-                            "alt_text": "heads"
-                        }
-                    ]
-                }
-            """
-        ))
+        say(json.loads(quarter_heads))
     else:
-        say(json.loads(
-            """
-                {
-                    "blocks": [
-                        {
-                            "type": "image",
-                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/1999_PA_Proof.png",
-                            "alt_text": "tails"
-                        }
-                    ]
-                }
-            """
-        ))
+        say(json.loads(quarter_tails))
 
 
 help_list.append(ask_who.__doc__)
+
 
 # Show structure of a regex context
 @app.message(re.compile("^(debug_regex)"))
