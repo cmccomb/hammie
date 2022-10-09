@@ -5,6 +5,7 @@ import os.path
 import dotenv
 import json
 import random
+import pydoc
 
 NAME = "Hammie"
 
@@ -30,7 +31,8 @@ def greetings(say, context):
     say(f"{greeting} <@{context['user_id']}>!")
 
 
-help_list.append(help(greetings))
+strhelp = pydoc.render_doc("greetings", "Help on %s")
+help_list.append(strhelp)
 
 
 # Flip a coin and show result as image
