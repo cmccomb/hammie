@@ -18,15 +18,18 @@ app = slack_bolt.App(
     signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
 )
 
+def regex_and(r1, r2):
+    re.compile("(%s&%s)" % (r1, r2))
 
 # Matches for checking
 is_greeting = re.compile("(hi|hello|hey|yo)", re.IGNORECASE)
 is_anything = re.compile(".*")
+is_debug = re.compile("DEBUG")
 
 # Basic greeting
-@app.message(is_greeting)
+@app.message(regex_and(is_greeting, is_debug))
 def greetings(say, context):
-    """👋 `hi`, `hello`, `hey`, `yo`: I can respond to these greetings, and more!"""
+    """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
     say(f"{greeting} <@{context['user_id']}>!")
 
