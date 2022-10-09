@@ -6,7 +6,7 @@ import dotenv
 import json
 import random
 
-help = []
+help_list = []
 # Set up dotenv
 dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
@@ -25,7 +25,7 @@ def say_hello_regex(say, context):
     say(f"{greeting} <@{context['user_id']}>!")
 
 
-help.append(help(say_hello_regex))
+help_list.append(help(say_hello_regex))
 
 
 # Flip a coin and show result as image
