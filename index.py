@@ -30,7 +30,7 @@ def greetings(say, context):
     say(f"{greeting} <@{context['user_id']}>!")
 
 
-help_list.append(help(say_hello_regex))
+help_list.append(help(greetings))
 
 
 # Flip a coin and show result as image
