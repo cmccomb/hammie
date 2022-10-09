@@ -18,16 +18,13 @@ app = slack_bolt.App(
     signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
 )
 
-def regex_and(r1, r2):
-    re.compile("(%s&%s)" % (r1, r2))
-
 # Matches for checking
 is_greeting = re.compile("(hi|hello|hey|yo)", re.IGNORECASE)
 is_anything = re.compile(".*")
-is_debug = re.compile("DEBUG")
+is_coinflip = re.compile("^(flip|coin|quarter)$")
 
 # Basic greeting
-@app.message(regex_and(is_greeting, is_debug))
+@app.message(is_greeting)
 def greetings(say, context):
     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
@@ -38,8 +35,8 @@ help_list.append(greetings.__doc__)
 
 
 # Flip a coin and show result as image
-@app.message("^(flip|coin|quarter)$")
-def ask_who(message, say):
+@app.message(is_coinflip)
+def ask_who(say, content):
     """🪙 `flip`, `coin`, `quarter`: I will flip a coin for you."""
     if random.random() < 0.5:
         say(json.loads(
