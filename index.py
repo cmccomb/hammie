@@ -6,6 +6,8 @@ import dotenv
 import json
 import random
 
+NAME = "Hammie"
+
 help_list = []
 # Set up dotenv
 dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
@@ -19,7 +21,10 @@ app = slack_bolt.App(
 
 # Basic greeting
 @app.message(re.compile("(hi|hello|hey|yo)", re.IGNORECASE))
-def say_hello_regex(say, context):
+def greetings(say, context):
+    """
+    I can respond to a variety of casual greetings, including hi, hello, hey, and yo.
+    """
     greeting = context['matches'][0]
     print(context)
     say(f"{greeting} <@{context['user_id']}>!")
@@ -72,6 +77,13 @@ def debug_regex(say, context):
 @app.message("debug_string")
 def debug_string(message, say):
     jstring = json.dumps(message, indent="\t")
+    say(f"```{jstring}```")
+
+
+# Show structure of a string message
+@app.message("help")
+def dump_help(message, say):
+    jstring = json.dumps(help_list, indent="\t")
     say(f"```{jstring}```")
 
 
