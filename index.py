@@ -63,6 +63,8 @@ help_list.append(dump_help.__doc__)
 
 
 # Catch all at the end and admit that it don't make no sense
+@app.event("app_mention")
+@app.message(is_anything)
 def last_resort(context, say, message):
     """🤔'asdfasdf', 'kjnkjlkjb', etc.: When you stop making sense, I'll let you know"""
     context_jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
@@ -75,9 +77,6 @@ def last_resort(context, say, message):
     raw_json['blocks'].append(text_block(f"```message = {message_jstring}```"))
     say(json.loads(json.dumps(raw_json)))
 
-
-app.event("app_mention")(last_resort)
-app.message(is_anything)(last_resort)
 
 help_list.append(last_resort.__doc__)
 
