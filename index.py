@@ -21,15 +21,17 @@ app = slack_bolt.App(
 )
 
 
-def is_a_match(message):
-    bool(is_greeting.search(message['text']))
+def is_hello(message) -> bool:
+    return message.get('text') == "hello"
 
-@app.event(
-    "app_mention",
-    [is_a_match]
-)
+
+@app.event("app_mention", matchers=[is_hello])
+def handle_app_mention_events(event, say):
+    say("Hey there!")
+
+
 @app.message(is_greeting)
-def greetings(message, say, context):
+def greetings(say, context):
     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
     say(f"{greeting} <@{context['user_id']}>!")
@@ -49,20 +51,6 @@ def ask_who(say, content):
 
 
 help_list.append(ask_who.__doc__)
-
-
-# Show structure of a regex context
-@app.message(re.compile("^(debug_regex)"))
-def debug_regex(say, context):
-    jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
-    say(f"```{jstring}```")
-
-
-# Show structure of a string message
-@app.message("debug_string")
-def debug_string(message, say):
-    jstring = json.dumps(message, indent="\t")
-    say(f"```{jstring}```")
 
 
 # Show structure of a string message
@@ -90,12 +78,14 @@ def last_resort(context, say, message):
                               f"Here's what I saw: ")]
     }
     raw_json['blocks'].append(text_block(f"```context = {context_jstring}```"))
-    raw_json['blocks'].append(text_block(f"```messages = {message_jstring}```"))
+    raw_json['blocks'].append(text_block(f"```message = {message_jstring}```"))
     say(json.loads(json.dumps(raw_json)))
 
 
 app.event("app_mention")(last_resort)
 app.message(is_anything)(last_resort)
+
+help_list.append(last_resort.__doc__)
 
 # Start the app
 if __name__ == "__main__":
