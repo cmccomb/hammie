@@ -83,7 +83,14 @@ def add_command(regex, function):
     help_list.append(function.__doc__)
 
 
-add_command(is_greeting, greetings)
+# add_command(is_greeting, greetings)
+
+
+app.event("app_mention",
+          matchers=[lambda message: bool(is_greeting.search(message['text']))]
+          )(greetings)
+app.message(is_greeting)(greetings)
+help_list.append(greetings.__doc__)
 
 
 # Catch all at the end and admit that it don't make no sense
