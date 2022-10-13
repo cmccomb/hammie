@@ -25,7 +25,7 @@ app = slack_bolt.App(
 @app.message(is_greeting)
 def greetings(say, context):
     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
-    greeting = lambda: random.choice(["Hi", "Hey", "Yo", "Hello"])
+    greeting = random.choice(["Hi", "Hey", "Yo", "Hello"])
     say(f"{greeting} <@{context['user_id']}>!")
 
 
