@@ -22,6 +22,10 @@ app = slack_bolt.App(
 
 
 # Basic greeting
+
+@app.event("app_mention",
+           matchers=[lambda message: bool(is_greeting.search(message['text']))]
+           )
 @app.message(is_greeting)
 def greetings(say, context):
     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
@@ -73,21 +77,18 @@ def dump_help(say):
 
 help_list.append(dump_help.__doc__)
 
-# app.event("app_mention",
-#           matchers=[lambda message: bool(is_greeting.search(message['text']))]
-#           )(greetings)
-
 
 # Catch all at the end and admit that it don't make no sense
 def last_resort(context, say, message):
+    """🤔'asdfasdf', 'kjnkjlkjb', etc.: When you stop making sense, I'll let you know"""
     context_jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
     message_jstring = json.dumps(message, indent="\t")
     raw_json = {
         "blocks": [text_block(f"Sorry, but I have no idea what you mean. Can you try to ask it in a different way? "
                               f"Here's what I saw: ")]
     }
-    raw_json['blocks'].append(text_block(f"```{context_jstring}```"))
-    raw_json['blocks'].append(text_block(f"```{message_jstring}```"))
+    raw_json['blocks'].append(text_block(f"```context = {context_jstring}```"))
+    raw_json['blocks'].append(text_block(f"```messages = {message_jstring}```"))
     say(json.loads(json.dumps(raw_json)))
 
 
