@@ -66,7 +66,7 @@ help_list.append(dump_help.__doc__)
 @app.event("app_mention")
 @app.message(is_anything)
 def last_resort(context, say, message):
-    """🤔'asdfasdf', 'kjnkjlkjb', etc.: When you stop making sense, I'll let you know"""
+    """🤔`asdfasdf`, `kjnkjlkjb`, etc.: When you stop making sense, I'll let you know"""
     context_jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
     message_jstring = json.dumps(message, indent="\t")
     raw_json = {
