@@ -60,11 +60,12 @@ quarter_tails = """
             """
 
 
-@app.event("app_mention",
-   matchers=[lambda message: bool(is_greeting.match(message.get('text').replace("@hammie ", "")))])
-def respond_to_mention(event, say):
-    message = event['text'].replace("@hammie ", "")
-    say(f"```{jstring}```")
+def is_hello(message) -> bool:
+    return message.get('text') == "hello"
+
+@app.event("app_mention", matchers=[is_hello])
+def hello_there(event, say):
+    say("Hey there!")
 
 # Basic greeting
 @app.message(is_greeting)
