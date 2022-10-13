@@ -74,7 +74,7 @@ help_list.append(dump_help.__doc__)
 
 
 # Catch all at the end and admit that it don't make no sense
-def last_resort(content, say, message):
+def last_resort(context, say, message):
     context_jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
     message_jstring = json.dumps(message, indent="\t")
     say(f"Sorry, but I have no idea what you mean by \"{message}\". Can you try to ask it in a different way? Here's what I saw: <details><summary>Context</summary>```{context_jstring}```</details> <details><summary>Message</summary>```{message_jstring}```</details>")
