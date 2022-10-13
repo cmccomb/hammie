@@ -20,12 +20,16 @@ app = slack_bolt.App(
     signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
 )
 
+
+def is_a_match(message):
+    bool(is_greeting.search(message['text']))
+
 @app.event(
     "app_mention",
-   matchers=[lambda message: message.get('text') == "hello"]
+    [is_a_match]
 )
 @app.message(is_greeting)
-def greetings(say, context):
+def greetings(message, say, context):
     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
     say(f"{greeting} <@{context['user_id']}>!")
