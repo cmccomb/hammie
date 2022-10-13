@@ -6,6 +6,8 @@ import dotenv
 import json
 import random
 
+from utils import is_greeting, is_anything, is_coinflip, quarter_heads, quarter_tails, text_block
+
 NAME = "Hammie"
 
 help_list = []
@@ -18,45 +20,6 @@ app = slack_bolt.App(
     signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
 )
 
-# Matches for checking
-is_greeting = re.compile("(hi|hello|hey|yo)", re.IGNORECASE)
-is_anything = re.compile(".*")
-is_coinflip = re.compile("^(flip|coin|quarter)$")
-
-# Textblock
-def text_block(markdown_string):
-    return {
-        "type": "section",
-        "text": {
-            "type": "mrkdwn",
-            "text": markdown_string
-        }
-    }
-
-# Quarters
-quarter_heads = """
-                {
-                    "blocks": [
-                        {
-                            "type": "image",
-                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/2006_Quarter_Proof.png/780px-2006_Quarter_Proof.png",
-                            "alt_text": "heads"
-                        }
-                    ]
-                }
-            """
-
-quarter_tails = """
-                {
-                    "blocks": [
-                        {
-                            "type": "image",
-                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/1999_PA_Proof.png",
-                            "alt_text": "tails"
-                        }
-                    ]
-                }
-            """
 
 # Basic greeting
 @app.message(is_greeting)
@@ -71,7 +34,7 @@ help_list.append(greetings.__doc__)
 
 # Flip a coin and show result as image
 @app.message(is_coinflip)
-def ask_who(say, content):
+def ask_who(message, say, context):
     """🪙 `flip`, `coin`, `quarter`: I will flip a coin for you."""
     if random.random() < 0.5:
         say(json.loads(quarter_heads))
