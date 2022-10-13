@@ -60,8 +60,8 @@ quarter_tails = """
             """
 
 
-def is_hello(message) -> bool:
-    return message.get('text') == "hello"
+def is_hello(event) -> bool:
+    return event['text'] == "hello"
 
 @app.event("app_mention", matchers=[is_hello])
 def hello_there(event, say):
