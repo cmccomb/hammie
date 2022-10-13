@@ -72,7 +72,7 @@ def dump_help(say):
 
 
 def add_command(regex, function):
-    app.event("app_mention", [lambda message: regex.search(message['text'])])(function)
+    app.event("app_mention", [lambda message: bool(regex.search(message['text']))])(function)
     app.message(regex)(function)
     help_list.append(function.__doc__)
 
