@@ -6,6 +6,8 @@ import dotenv
 import json
 import random
 
+from utils import *
+
 NAME = "Hammie"
 
 help_list = []
