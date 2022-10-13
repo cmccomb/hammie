@@ -20,12 +20,14 @@ app = slack_bolt.App(
     signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
 )
 
+
 # Basic greeting
 # @app.message(is_greeting)
 def greetings(say, context):
     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
     say(f"{greeting} <@{context['user_id']}>!")
+
 
 #
 # help_list.append(greetings.__doc__)
@@ -70,16 +72,19 @@ def dump_help(say):
     say(json.loads(json.dumps(raw_json)))
 
 
+help_list.append(dump_help.__doc__)
+
 
 def add_command(regex, function):
     app.event("app_mention",
-                matchers=[lambda message: bool(regex.search(message['text']))]
+              matchers=[lambda message: bool(regex.search(message['text']))]
               )(function)
     app.message(regex)(function)
     help_list.append(function.__doc__)
 
 
 add_command(is_greeting, greetings)
+
 
 # Catch all at the end and admit that it don't make no sense
 def last_resort(context, say, message):
