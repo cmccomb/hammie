@@ -61,7 +61,7 @@ quarter_tails = """
 
 
 def is_hello(event) -> bool:
-    return bool(is_greeting.match(event['text']))
+    return bool(is_greeting.search(event['text']))
 
 
 @app.event("app_mention", matchers=[is_hello])
