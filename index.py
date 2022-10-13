@@ -58,6 +58,12 @@ quarter_tails = """
                 }
             """
 
+
+@app.event("app_mention")
+def respond_to_mention(event, say):
+    jstring = json.dumps(event, indent="\t")
+    say(f"```{jstring}```")
+
 # Basic greeting
 @app.message(is_greeting)
 def greetings(say, context):
@@ -117,7 +123,6 @@ def last_resort(say, context):
     message = context['matches'][0]
     print(context)
     say(f"Sorry, but I have no idea what you mean by \"{message}\". Can you try to ask it in a different way?")
-
 
 # Start the app
 if __name__ == "__main__":
