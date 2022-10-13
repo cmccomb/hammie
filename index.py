@@ -83,10 +83,15 @@ def last_resort(context, say, message):
     context_jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
     message_jstring = json.dumps(message, indent="\t")
     raw_json = {
-        "blocks": [text_block(f"Sorry, but I have no idea what you mean by \"{message}\". Can you try to ask it in a different way? Here's what I saw: ")]
+        "blocks": [text_block(f"Sorry, but I have no idea what you mean. Can you try to ask it in a different way? "
+                              f"Here's what I saw: ")]
     }
-    raw_json['blocks'].append(text_block(f"<details><summary>Context</summary>```{context_jstring}```</details>"))
-    raw_json['blocks'].append(text_block(f"<details><summary>Message</summary>```{message_jstring}```</details>"))
+    raw_json['blocks'].append(text_block("<details><summary>Context</summary>"
+                                         f"```{context_jstring}```"
+                                         "</details>"))
+    raw_json['blocks'].append(text_block("<details><summary>Message</summary>"
+                                         f"```{message_jstring}```"
+                                         "</details>"))
     say(json.loads(json.dumps(raw_json)))
 
 
