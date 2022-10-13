@@ -4,9 +4,8 @@ import random
 # Matches for checking
 is_greeting = re.compile("(hi|hello|hey|yo)", re.IGNORECASE)
 is_anything = re.compile(".*")
-is_coinflip = re.compile("^(flip|coin|quarter)$")
-
-
+is_coinflip = re.compile("(flip|coin|quarter)")
+is_help = re.compile("(help|about|info)")
 # Textblock
 def text_block(markdown_string):
     return {

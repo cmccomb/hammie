@@ -6,7 +6,7 @@ import dotenv
 import json
 import random
 
-from utils import *
+from utils import is_greeting, is_anything, is_coinflip, is_help, quarter_heads, quarter_tails, text_block
 
 NAME = "Hammie"
 
@@ -33,8 +33,9 @@ help_list.append(greetings.__doc__)
 
 
 # Flip a coin and show result as image
+@app.event("app_mention", matchers=[lambda event: bool(is_coinflip.search(event['text']))])
 @app.message(is_coinflip)
-def ask_who(say, content):
+def ask_who(say, context):
     """🪙 `flip`, `coin`, `quarter`: I will flip a coin for you."""
     if random.random() < 0.5:
         say(json.loads(quarter_heads))
@@ -46,7 +47,8 @@ help_list.append(ask_who.__doc__)
 
 
 # Show structure of a string message
-@app.message(re.compile("^(help|about|info)$"))
+@app.event("app_mention", matchers=[lambda event: bool(is_help.search(event['text']))])
+@app.message(is_help)
 def dump_help(say):
     """ℹ️ `about`, `help`, `info`: I will print this help table."""
     raw_json = {
