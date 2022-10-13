@@ -58,7 +58,7 @@ def debug_string(message, say):
 
 # Show structure of a string message
 @app.message(re.compile("^(help|about|info)$"))
-def dump_help(message, say):
+def dump_help(say):
     """ℹ️ `about`, `help`, `info`: I will print this help table."""
     raw_json = {
         "blocks": [text_block("Here are a few of the things I can do!")]
