@@ -27,8 +27,8 @@ app = slack_bolt.App(
 #     greeting = context['matches'][0]
 #     say(f"{greeting} <@{context['user_id']}>!")
 
-
-help_list.append(greetings.__doc__)
+#
+# help_list.append(greetings.__doc__)
 
 
 # Flip a coin and show result as image
