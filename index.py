@@ -21,15 +21,7 @@ app = slack_bolt.App(
 )
 
 
-def is_hello(message) -> bool:
-    return message.get('text') == "hello"
-
-
-@app.event("app_mention", matchers=[is_hello])
-def handle_app_mention_events(event, say):
-    say("Hey there!")
-
-
+@app.event("app_mention", matchers=[lambda event: bool(is_greeting.search(event['text']))])
 @app.message(is_greeting)
 def greetings(say, context):
     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
