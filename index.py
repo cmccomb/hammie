@@ -68,11 +68,6 @@ def is_hello(event) -> bool:
 def hello_there(event, say):
     say("Hey there!")
 
-@app.event("app_mention")
-def app_mention_catchall(event, say):
-    jstring = json.dumps(event, indent="\t")
-    say(f"```{jstring}```")
-
 # Basic greeting
 @app.message(is_greeting)
 def greetings(say, context):
@@ -133,6 +128,11 @@ def last_resort(say, context):
     print(context)
     say(f"Sorry, but I have no idea what you mean by \"{message}\". Can you try to ask it in a different way?")
 
+
+@app.event("app_mention")
+def app_mention_catchall(event, say):
+    jstring = json.dumps(event, indent="\t")
+    say(f"```{jstring}```")
 
 x = (is_greeting, greetings)
 
