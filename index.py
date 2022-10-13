@@ -6,7 +6,7 @@ import dotenv
 import json
 import random
 
-NAME = "Hammie"
+NAME = "hammie"
 
 help_list = []
 # Set up dotenv
@@ -22,6 +22,7 @@ app = slack_bolt.App(
 is_greeting = re.compile("(hi|hello|hey|yo)", re.IGNORECASE)
 is_anything = re.compile(".*")
 is_coinflip = re.compile("^(flip|coin|quarter)$")
+
 
 # Textblock
 def text_block(markdown_string):
@@ -59,9 +60,10 @@ quarter_tails = """
             """
 
 
-@app.event("app_mention")
+@app.event("app_mention",
+   matchers=[lambda message: bool(is_greeting.match(message.get('text').replace("@hammie ", "")))])
 def respond_to_mention(event, say):
-    jstring = json.dumps(event, indent="\t")
+    message = event['text'].replace("@hammie ", "")
     say(f"```{jstring}```")
 
 # Basic greeting
@@ -77,7 +79,7 @@ help_list.append(greetings.__doc__)
 
 # Flip a coin and show result as image
 @app.message(is_coinflip)
-def ask_who(say, content):
+def ask_who(say, context):
     """🪙 `flip`, `coin`, `quarter`: I will flip a coin for you."""
     if random.random() < 0.5:
         say(json.loads(quarter_heads))
@@ -124,6 +126,10 @@ def last_resort(say, context):
     print(context)
     say(f"Sorry, but I have no idea what you mean by \"{message}\". Can you try to ask it in a different way?")
 
+
+x = (is_greeting, greetings)
+
 # Start the app
 if __name__ == "__main__":
     app.start(port=int(os.environ.get("PORT", 3000)))
+x
