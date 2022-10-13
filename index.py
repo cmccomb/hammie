@@ -61,7 +61,7 @@ quarter_tails = """
 
 
 def is_hello(event) -> bool:
-    return event['text'].replace("@hammie ", "") == "hello"
+    return bool(is_greeting.match(event['text']))
 
 
 @app.event("app_mention", matchers=[is_hello])
