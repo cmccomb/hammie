@@ -22,15 +22,14 @@ app = slack_bolt.App(
 
 
 # Basic greeting
-# @app.message(is_greeting)
+@app.message(is_greeting)
 def greetings(say, context):
     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
     greeting = context['matches'][0]
     say(f"{greeting} <@{context['user_id']}>!")
 
 
-#
-# help_list.append(greetings.__doc__)
+help_list.append(greetings.__doc__)
 
 
 # Flip a coin and show result as image
@@ -74,23 +73,9 @@ def dump_help(say):
 
 help_list.append(dump_help.__doc__)
 
-
-def add_command(regex, function):
-    app.event("app_mention",
-              matchers=[lambda message: bool(regex.search(message['text']))]
-              )(function)
-    app.message(regex)(function)
-    help_list.append(function.__doc__)
-
-
-# add_command(is_greeting, greetings)
-
-
-app.event("app_mention",
-          matchers=[lambda message: bool(is_greeting.search(message['text']))]
-          )(greetings)
-app.message(is_greeting)(greetings)
-help_list.append(greetings.__doc__)
+# app.event("app_mention",
+#           matchers=[lambda message: bool(is_greeting.search(message['text']))]
+#           )(greetings)
 
 
 # Catch all at the end and admit that it don't make no sense
