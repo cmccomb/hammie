@@ -61,7 +61,7 @@ quarter_tails = """
 
 
 def is_hello(event) -> bool:
-    return event['text'] == "hello"
+    return event['text'].remove("@hammie ") == "hello"
 
 @app.event("app_mention", matchers=[is_hello])
 def hello_there(event, say):
