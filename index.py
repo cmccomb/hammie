@@ -86,12 +86,8 @@ def last_resort(context, say, message):
         "blocks": [text_block(f"Sorry, but I have no idea what you mean. Can you try to ask it in a different way? "
                               f"Here's what I saw: ")]
     }
-    raw_json['blocks'].append(text_block("<details><summary>Context</summary>"
-                                         f"```{context_jstring}```"
-                                         "</details>"))
-    raw_json['blocks'].append(text_block("<details><summary>Message</summary>"
-                                         f"```{message_jstring}```"
-                                         "</details>"))
+    raw_json['blocks'].append(text_block(f"```{context_jstring}```"))
+    raw_json['blocks'].append(text_block(f"```{message_jstring}```"))
     say(json.loads(json.dumps(raw_json)))
 
 
