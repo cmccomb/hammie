@@ -22,10 +22,10 @@ app = slack_bolt.App(
 
 # Basic greeting
 # @app.message(is_greeting)
-# def greetings(say, context):
-#     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
-#     greeting = context['matches'][0]
-#     say(f"{greeting} <@{context['user_id']}>!")
+def greetings(say, context):
+    """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
+    greeting = context['matches'][0]
+    say(f"{greeting} <@{context['user_id']}>!")
 
 #
 # help_list.append(greetings.__doc__)
