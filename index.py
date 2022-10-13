@@ -70,7 +70,7 @@ def hello_there(event, say):
 
 @app.event("app_mention")
 def app_mention_catchall(event, say):
-    jstring = json.dumps(message, indent="\t")
+    jstring = json.dumps(event, indent="\t")
     say(f"```{jstring}```")
 
 # Basic greeting
