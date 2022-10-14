@@ -44,7 +44,7 @@ help_list.append(greetings.__doc__)
 @app.message(is_acronym)
 def acronym_search(say, context):
     """👋 `What does ASME stand for?`: I can help you learn common acronyms in our field."""
-    last_resort(context, say, context)
+    last_resort(context, say, [])
 
 
 help_list.append(greetings.__doc__)
