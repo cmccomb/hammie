@@ -96,7 +96,7 @@ def branding(say, context):
                 "text": {
                     "type": "mrkdwn",
                     "text": "🧳 Other miscellaneous brand assets, including a circular graphic, gradient in the brand "
-                            "colors, icons, patterns of the logo, and a scribble graphic. . "
+                            "colors, icons, patterns of the logo, and a scribble graphic."
                 },
                 "accessory": {
                     "type": "button",
@@ -155,8 +155,8 @@ def last_resort(context, say, message):
     context_jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
     message_jstring = json.dumps(message, indent="\t")
     raw_json = {
-        "blocks": [text_block(f"Sorry, but I have no idea what you mean. Can you try to ask it in a different way? "
-                              f"Here's what I saw: ")]
+        "blocks": [text_block("Sorry, but I have no idea what you mean. Can you try to ask it in a different way? "
+                              "Here's what I saw: ")]
     }
     raw_json['blocks'].append(text_block(f"```context = {context_jstring}```"))
     raw_json['blocks'].append(text_block(f"```message = {message_jstring}```"))
