@@ -56,7 +56,7 @@ def branding(say, context):
                         "text": "Download",
                         "emoji": True
                     },
-                    "url": f"📕 {BRAND_BOOK_LINK}",
+                    "url": f"{BRAND_BOOK_LINK}",
                 }
             },
             {
@@ -73,7 +73,7 @@ def branding(say, context):
                         "text": "Download",
                         "emoji": True
                     },
-                    "url": f"🐹 {LOGOS_LINK}",
+                    "url": f"{LOGOS_LINK}",
                 }
             },
             {
@@ -90,7 +90,7 @@ def branding(say, context):
                         "text": "Download",
                         "emoji": True
                     },
-                    "url": f"🔠 {FONTS_LINK}",
+                    "url": f"{FONTS_LINK}",
                 }
             },
             {
@@ -107,13 +107,14 @@ def branding(say, context):
                         "text": "Download",
                         "emoji": True
                     },
-                    "url": f"🧳 {ASSETS_LINK}",
+                    "url": f"{ASSETS_LINK}",
                 }
             }
         ]
     }
 
     say(json.loads(json.dumps(raw_json)))
+
 
 help_list.append(greetings.__doc__)
 
