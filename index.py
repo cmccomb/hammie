@@ -44,7 +44,7 @@ def branding(say, context):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Our brand book contains general guidance on how to use the Design Research "
+                    "text": "📓 Our brand book contains general guidance on how to use the Design Research "
                             "Collective brand."
                 },
                 "accessory": {
@@ -61,7 +61,7 @@ def branding(say, context):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Variations on our logo in JPG (horizontal layout, stacked layout, and symbol only), "
+                    "text": "🌠 Variations on our logo in JPG (horizontal layout, stacked layout, and symbol only), "
                             "PNG (horizontal layout, stacked layout, symbol only, on black background) and AI formats."
                 },
                 "accessory": {
@@ -78,7 +78,7 @@ def branding(say, context):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "The Magdelin and Zilla Slab font files in combinations of Italic, ExtraLight, Light, "
+                    "text": "🔡 The Magdelin and Zilla Slab font files in combinations of Italic, ExtraLight, Light, "
                             "Medium, Regular, SemiBold, Bold, ExtraBold. "
                 },
                 "accessory": {
@@ -95,7 +95,7 @@ def branding(say, context):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Other miscellaneous brand assets, including a circular graphic, gradient in the brand "
+                    "text": "🧳 Other miscellaneous brand assets, including a circular graphic, gradient in the brand "
                             "colors, icons, patterns of the logo, and a scribble graphic. . "
                 },
                 "accessory": {
@@ -141,7 +141,7 @@ def dump_help(say):
     }
     for help_string in help_list:
         raw_json['blocks'].append(text_block(help_string))
-    say(json.loads(json.dumps(raw_json)))
+    say(raw_json)
 
 
 help_list.append(dump_help.__doc__)
@@ -160,7 +160,7 @@ def last_resort(context, say, message):
     }
     raw_json['blocks'].append(text_block(f"```context = {context_jstring}```"))
     raw_json['blocks'].append(text_block(f"```message = {message_jstring}```"))
-    say(json.loads(json.dumps(raw_json)))
+    say(raw_json)
 
 
 help_list.append(last_resort.__doc__)
