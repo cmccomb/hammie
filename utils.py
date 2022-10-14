@@ -2,11 +2,11 @@ import re
 import random
 
 # Matches for checking
-is_greeting = re.compile("\b(hi|hello|hey|yo)\b", re.IGNORECASE)
-is_anything = re.compile(".*")
-is_coinflip = re.compile("(flip|coin|quarter)")
-is_help = re.compile("(help|about|info)")
-is_branding = re.compile("(brand|logo|font)")
+is_greeting = re.compile(r"\b(hi|hello|hey|yo)\b", re.IGNORECASE)
+is_anything = re.compile(r".*")
+is_coinflip = re.compile(r"(flip|coin|quarter)")
+is_help = re.compile(r"(help|about|info)")
+is_branding = re.compile(r"(brand|logo|font)")
 
 # Textblock
 def text_block(markdown_string):
