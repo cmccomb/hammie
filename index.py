@@ -9,8 +9,6 @@ import random
 from utils import is_greeting, is_anything, is_coinflip, is_help, quarter_heads, is_branding, quarter_tails, text_block, \
     LOGOS_LINK, FONTS_LINK, ASSETS_LINK, BRAND_BOOK_LINK
 
-NAME = "Hammie"
-
 help_list = []
 # Set up dotenv
 dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
@@ -113,7 +111,7 @@ def branding(say, context):
         ]
     }
 
-    say(json.loads(json.dumps(raw_json)))
+    say(raw_json)
 
 
 help_list.append(branding.__doc__)
