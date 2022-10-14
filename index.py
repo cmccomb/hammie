@@ -7,7 +7,7 @@ import json
 import random
 
 from utils import is_greeting, is_anything, is_coinflip, is_help, quarter_heads, is_branding, quarter_tails, text_block, \
-    LOGOS_LINK, FONTS_LINK, ASSETS_LINK, BRAND_BOOK_LINK, is_acronym, ACRONYMS
+    LOGOS_LINK, FONTS_LINK, ASSETS_LINK, BRAND_BOOK_LINK, is_acronym, ACRONYMS, BRANDING_RESPONSE
 
 help_list = []
 # Set up dotenv
@@ -61,80 +61,7 @@ help_list.append(acronym_search.__doc__)
 @app.message(is_branding)
 def branding(say, context):
     """🌠 `brand`, `logo`, `font`: I'll return useful links for the lab brand."""
-    raw_json = {
-        "blocks": [
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "📓 Our brand book contains general guidance on how to use the Design Research "
-                            "Collective brand."
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Download",
-                        "emoji": True
-                    },
-                    "url": f"{BRAND_BOOK_LINK}",
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "🌠 Variations on our logo in JPG (horizontal layout, stacked layout, and symbol only), "
-                            "PNG (horizontal layout, stacked layout, symbol only, on black background) and AI formats."
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Download",
-                        "emoji": True
-                    },
-                    "url": f"{LOGOS_LINK}",
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "🔡 The Magdelin and Zilla Slab font files in combinations of Italic, ExtraLight, Light, "
-                            "Medium, Regular, SemiBold, Bold, ExtraBold. "
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Download",
-                        "emoji": True
-                    },
-                    "url": f"{FONTS_LINK}",
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "🧳 Other miscellaneous brand assets, including a circular graphic, gradient in the brand "
-                            "colors, icons, patterns of the logo, and a scribble graphic."
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Download",
-                        "emoji": True
-                    },
-                    "url": f"{ASSETS_LINK}",
-                }
-            }
-        ]
-    }
-
-    say(raw_json)
+    say(BRANDING_RESPONSE)
 
 
 help_list.append(branding.__doc__)

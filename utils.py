@@ -50,10 +50,83 @@ FONTS_LINK = "https://cmu.box.com/shared/static/a4dwu8lvw6txhbe98vcd5naotsfe7ag1
 LOGOS_LINK = "https://cmu.box.com/shared/static/1olz4zle4s4qdn5y4nu73fglz69mn131.zip"
 ASSETS_LINK = "https://cmu.box.com/shared/static/oynnamlbyjxlmw9tqrqqb4b7d3kwg8w4.zip"
 
+BRANDING_RESPONSE = {
+    "blocks": [
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "📓 Our brand book contains general guidance on how to use the Design Research "
+                        "Collective brand."
+            },
+            "accessory": {
+                "type": "button",
+                "text": {
+                    "type": "plain_text",
+                    "text": "Download",
+                    "emoji": True
+                },
+                "url": f"{BRAND_BOOK_LINK}",
+            }
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "🌠 Variations on our logo in JPG (horizontal layout, stacked layout, and symbol only), "
+                        "PNG (horizontal layout, stacked layout, symbol only, on black background) and AI formats."
+            },
+            "accessory": {
+                "type": "button",
+                "text": {
+                    "type": "plain_text",
+                    "text": "Download",
+                    "emoji": True
+                },
+                "url": f"{LOGOS_LINK}",
+            }
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "🔡 The Magdelin and Zilla Slab font files in combinations of Italic, ExtraLight, Light, "
+                        "Medium, Regular, SemiBold, Bold, ExtraBold. "
+            },
+            "accessory": {
+                "type": "button",
+                "text": {
+                    "type": "plain_text",
+                    "text": "Download",
+                    "emoji": True
+                },
+                "url": f"{FONTS_LINK}",
+            }
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "🧳 Other miscellaneous brand assets, including a circular graphic, gradient in the brand "
+                        "colors, icons, patterns of the logo, and a scribble graphic."
+            },
+            "accessory": {
+                "type": "button",
+                "text": {
+                    "type": "plain_text",
+                    "text": "Download",
+                    "emoji": True
+                },
+                "url": f"{ASSETS_LINK}",
+            }
+        }
+    ]
+}
+
 ACRONYMS = {
     "ASME": "American Society of Mechanical Engineers",
-    "CIE": "Computers and Information in Engineering Conference",
-    "IDETC": "International Design Engineering and Technical Conferences",
+    "CIE": "Computers and Information in Engineering Conference, and ASME conference colocated with IDETC",
+    "IDETC": "International Design Engineering and Technical Conferences, an ASME conference",
     "DAC": "Design Automation Conference, part of IDETC",
     "DFMLC": "Design for Manufacturing and Life Cycle Conference, part of IDETC",
     "DTM": "Design Theory and Methdology Conference, part of IDETC",
@@ -62,4 +135,7 @@ ACRONYMS = {
     "DED": "Design Engineering Division, part of ASME",
     "ICED": "International Conference on Engineering Design",
     "SIG": "Special Interest Group",
+    "JMD": "Journal of Mechanical Design, an ASME journal",
+    "JCISE": "Journal of Computers and Information Science in Engineering, an ASME journal",
+    "KYOOT": "Keep your options open, tiger"
 }
