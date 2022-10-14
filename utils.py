@@ -4,8 +4,8 @@ import random
 # Matches for checking
 is_greeting = re.compile(r"\b(hi|hello|hey|yo)\b", re.IGNORECASE)
 is_anything = re.compile(r".*")
-is_coinflip = re.compile(r"(flip|coin|quarter)")
-is_help = re.compile(r"(help|about|info)")
+is_coinflip = re.compile(r"\b(flip|coin|quarter)\b")
+is_help = re.compile(r"\b(help|about|info)\b")
 is_branding = re.compile(r"(brand|logo|font)")
 
 # Textblock
