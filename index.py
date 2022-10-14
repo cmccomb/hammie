@@ -49,6 +49,7 @@ def acronym_search(say, context):
 
 help_list.append(greetings.__doc__)
 
+
 @app.event(
     "app_mention",
     matchers=[lambda event: bool(is_branding.search(event['text']))]

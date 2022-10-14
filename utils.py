@@ -7,7 +7,7 @@ is_anything = re.compile(r".*")
 is_coinflip = re.compile(r"\b(flip|coin|quarter)\b")
 is_help = re.compile(r"\b(help|about|info)\b")
 is_branding = re.compile(r"(brand|logo|font)")
-is_acronym = re.compile(r"what does (?:[A-Z]){2,}) stand for")
+is_acronym = re.compile(r"what does (?:[A-Z]){2,} stand for")
 
 # Textblock
 def text_block(markdown_string):
