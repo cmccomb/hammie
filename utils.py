@@ -6,6 +6,8 @@ is_greeting = re.compile("(hi|hello|hey|yo)", re.IGNORECASE)
 is_anything = re.compile(".*")
 is_coinflip = re.compile("(flip|coin|quarter)")
 is_help = re.compile("(help|about|info)")
+is_branding = re.compile("(brand|logo|font)")
+
 # Textblock
 def text_block(markdown_string):
     return {
@@ -41,3 +43,8 @@ quarter_tails = """
                     ]
                 }
             """
+
+BRAND_BOOK_LINK = "https://cmu.box.com/shared/static/ag94ilmtc82y26plb8rdl4xw62qgglop.pdf"
+FONTS_LINK = "https://cmu.box.com/shared/static/a4dwu8lvw6txhbe98vcd5naotsfe7ag1.zip"
+LOGOS_LINK = "https://cmu.box.com/shared/static/1olz4zle4s4qdn5y4nu73fglz69mn131.zip"
+ASSETS_LINK = "https://cmu.box.com/shared/static/oynnamlbyjxlmw9tqrqqb4b7d3kwg8w4.zip"

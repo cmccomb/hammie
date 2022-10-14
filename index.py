@@ -6,7 +6,8 @@ import dotenv
 import json
 import random
 
-from utils import is_greeting, is_anything, is_coinflip, is_help, quarter_heads, quarter_tails, text_block
+from utils import is_greeting, is_anything, is_coinflip, is_help, quarter_heads, is_branding, quarter_tails, text_block, \
+    LOGOS_LINK, FONTS_LINK, ASSETS_LINK, BRAND_BOOK_LINK
 
 NAME = "Hammie"
 
@@ -21,6 +22,7 @@ app = slack_bolt.App(
 )
 
 
+# Greeting
 @app.event("app_mention",
            matchers=[lambda event: bool(is_greeting.search(event['text']))])
 @app.message(is_greeting)
@@ -29,6 +31,39 @@ def greetings(say, context):
     greeting = random.choice(["Hi", "Hey", "Yo", "Hello"])
     say(f"{greeting} <@{context['user_id']}>!")
 
+
+help_list.append(greetings.__doc__)
+
+
+@app.event("app_mention",
+           matchers=[lambda event: bool(is_branding.search(event['text']))])
+@app.message(is_branding)
+def branding(say, context):
+    """👋 `brand`, `logo`, `font`: I'll return useful links for the lab brand."""
+    raw_json = {
+        "blocks": [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Our brand book contains general guidance on how to use our the Design Research Collective brand."
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Download",
+                        "emoji": True
+                    },
+                    "value": "click_me_123",
+                    "url": f"{BRAND_BOOK_LINK}",
+                    "action_id": "button-action"
+                }
+            }
+        ]
+    }
+
+    say(json.loads(json.dumps(raw_json)))
 
 help_list.append(greetings.__doc__)
 
