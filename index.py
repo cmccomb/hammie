@@ -39,7 +39,7 @@ help_list.append(greetings.__doc__)
            matchers=[lambda event: bool(is_branding.search(event['text']))])
 @app.message(is_branding)
 def branding(say, context):
-    """👋 `brand`, `logo`, `font`: I'll return useful links for the lab brand."""
+    """🤓 `brand`, `logo`, `font`: I'll return useful links for the lab brand."""
     raw_json = {
         "blocks": [
             {
