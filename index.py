@@ -63,7 +63,8 @@ def branding(say, context):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Many different variations on our logo."
+                    "text": "Variations on our logo in JPG (horizontal layout, stacked layout, and symbol only), "
+                            "PNG (horizontal layout, stacked layout, symbol only, on black background) and AI formats."
                 },
                 "accessory": {
                     "type": "button",
