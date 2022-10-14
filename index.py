@@ -55,9 +55,55 @@ def branding(say, context):
                         "text": "Download",
                         "emoji": True
                     },
-                    "value": "click_me_123",
                     "url": f"{BRAND_BOOK_LINK}",
-                    "action_id": "button-action"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Here you can down many different variations on our logo."
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Download",
+                        "emoji": True
+                    },
+                    "url": f"{LOGOS_LINK}",
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "You can get the Magdelin and Zilla Slab font files here."
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Download",
+                        "emoji": True
+                    },
+                    "url": f"{FONTS_LINK}",
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "You can find some other miscellaneous brand assets here."
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Download",
+                        "emoji": True
+                    },
+                    "url": f"{ASSETS_LINK}",
                 }
             }
         ]
