@@ -44,12 +44,11 @@ help_list.append(greetings.__doc__)
 @app.message(is_acronym)
 def acronym_search(say, context):
     """👋 `What does ASME stand for?`: I can help you learn common acronyms in our field."""
-    say(f"{context['matches']}")
-    # acronym = is_acronym.search(context['matches'][0]).group(2)
-    # if acronym in ACRONYMS:
-    #     say(f"{acronym}: {ACRONYMS[acronym]}")
-    # else:
-    #     say(f"Sorry, I don't know what `{acronym}` stands for.")
+    acronym = is_acronym.search(context['matches'](0)).group(2)
+    if acronym in ACRONYMS:
+        say(f"{acronym}: {ACRONYMS[acronym]}")
+    else:
+        say(f"Sorry, I don't know what `{acronym}` stands for.")
 
 
 help_list.append(acronym_search.__doc__)
