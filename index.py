@@ -48,7 +48,7 @@ def acronym_search(say, context):
     if acronym in ACRONYMS:
         say(f"{acronym}: {ACRONYMS[acronym]}")
     else:
-        say(f"Sorry, I don't know what {acronym} stands for.")
+        say(f"Sorry, I don't know what `{acronym}` stands for.")
 
 
 help_list.append(acronym_search.__doc__)
