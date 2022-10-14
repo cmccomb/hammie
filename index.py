@@ -21,8 +21,10 @@ app = slack_bolt.App(
 
 
 # Greeting
-@app.event("app_mention",
-           matchers=[lambda event: bool(is_greeting.search(event['text']))])
+@app.event(
+    "app_mention",
+    matchers=[lambda event: bool(is_greeting.search(event['text']))]
+)
 @app.message(is_greeting)
 def greetings(say, context):
     """👋 `hi`, `hey`, `yo`, etc.: I can respond to these greetings, and more!"""
@@ -33,8 +35,10 @@ def greetings(say, context):
 help_list.append(greetings.__doc__)
 
 
-@app.event("app_mention",
-           matchers=[lambda event: bool(is_branding.search(event['text']))])
+@app.event(
+    "app_mention",
+    matchers=[lambda event: bool(is_branding.search(event['text']))]
+)
 @app.message(is_branding)
 def branding(say, context):
     """🤓 `brand`, `logo`, `font`: I'll return useful links for the lab brand."""
@@ -118,9 +122,13 @@ help_list.append(branding.__doc__)
 
 
 # Flip a coin and show result as image
-@app.event("app_mention", matchers=[lambda event: bool(is_coinflip.search(event['text']))])
+@app.event(
+    "app_mention",
+    matchers=[lambda event: bool(is_coinflip.search(event['text']))]
+)
 @app.message(is_coinflip)
 def ask_who(say, context):
+    random.seed()
     """🪙 `flip`, `coin`, `quarter`: I will flip a coin for you."""
     if random.random() < 0.5:
         say(json.loads(quarter_heads))
@@ -132,7 +140,10 @@ help_list.append(ask_who.__doc__)
 
 
 # Show structure of a string message
-@app.event("app_mention", matchers=[lambda event: bool(is_help.search(event['text']))])
+@app.event(
+    "app_mention",
+    matchers=[lambda event: bool(is_help.search(event['text']))]
+)
 @app.message(is_help)
 def dump_help(say):
     """ℹ️ `about`, `help`, `info`: I will print this help table."""
