@@ -60,7 +60,7 @@ help_list.append(acronym_search.__doc__)
 )
 @app.message(is_branding)
 def branding(say, context):
-    """`brand`, `logo`, `font`: I'll return useful links for the lab brand."""
+    """🌠 `brand`, `logo`, `font`: I'll return useful links for the lab brand."""
     raw_json = {
         "blocks": [
             {
