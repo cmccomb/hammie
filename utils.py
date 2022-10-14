@@ -137,5 +137,11 @@ ACRONYMS = {
     "SIG": "Special Interest Group",
     "JMD": "Journal of Mechanical Design, an ASME journal",
     "JCISE": "Journal of Computers and Information Science in Engineering, an ASME journal",
-    "KYOOT": "Keep your options open, tiger"
+    "KYOOT": "Keep your options open, tiger",
+    "VAE": "Variational Autoencoder",
+    "ML": "Machine Learning",
+    "AI": "Artificial Intelligence",
+    "DFAI": "Design for Artificial Intelligence",
+    "AM": "Additive Manufacturing",
+    "DFAM": "Design for Additive Manufacturing",
 }
