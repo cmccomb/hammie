@@ -46,7 +46,8 @@ def branding(say, context):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Our brand book contains general guidance on how to use our the Design Research Collective brand."
+                    "text": "Our brand book contains general guidance on how to use the Design Research "
+                            "Collective brand."
                 },
                 "accessory": {
                     "type": "button",
@@ -55,14 +56,14 @@ def branding(say, context):
                         "text": "Download",
                         "emoji": True
                     },
-                    "url": f"{BRAND_BOOK_LINK}",
+                    "url": f"📕 {BRAND_BOOK_LINK}",
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Here you can down many different variations on our logo."
+                    "text": "Many different variations on our logo."
                 },
                 "accessory": {
                     "type": "button",
@@ -71,14 +72,15 @@ def branding(say, context):
                         "text": "Download",
                         "emoji": True
                     },
-                    "url": f"{LOGOS_LINK}",
+                    "url": f"🐹 {LOGOS_LINK}",
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "You can get the Magdelin and Zilla Slab font files here."
+                    "text": "The Magdelin and Zilla Slab font files in combinations of Italic, ExtraLight, Light, "
+                            "Medium, Regular, SemiBold, Bold, ExtraBold. "
                 },
                 "accessory": {
                     "type": "button",
@@ -87,14 +89,15 @@ def branding(say, context):
                         "text": "Download",
                         "emoji": True
                     },
-                    "url": f"{FONTS_LINK}",
+                    "url": f"🔠 {FONTS_LINK}",
                 }
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "You can find some other miscellaneous brand assets here."
+                    "text": "Other miscellaneous brand assets, including a circular graphic, gradient in the brand "
+                            "colors, icons, patterns of the logo, and a scribble graphic. . "
                 },
                 "accessory": {
                     "type": "button",
@@ -103,7 +106,7 @@ def branding(say, context):
                         "text": "Download",
                         "emoji": True
                     },
-                    "url": f"{ASSETS_LINK}",
+                    "url": f"🧳 {ASSETS_LINK}",
                 }
             }
         ]
