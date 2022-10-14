@@ -7,7 +7,7 @@ import json
 import random
 
 from utils import is_greeting, is_anything, is_coinflip, is_help, quarter_heads, is_branding, quarter_tails, text_block, \
-    LOGOS_LINK, FONTS_LINK, ASSETS_LINK, BRAND_BOOK_LINK, is_acronym
+    LOGOS_LINK, FONTS_LINK, ASSETS_LINK, BRAND_BOOK_LINK, is_acronym, ACRONYMS
 
 help_list = []
 # Set up dotenv
@@ -44,10 +44,14 @@ help_list.append(greetings.__doc__)
 @app.message(is_acronym)
 def acronym_search(say, context):
     """👋 `What does ASME stand for?`: I can help you learn common acronyms in our field."""
-    last_resort(context, say, [])
+    acronym = context['matches'][0][10:(len(context['matches'][0])-11)]
+    if acronym in ACRONYMS:
+        say(f"{acronym}: {ACRONYMS[acronym]}")
+    else:
+        say(f"Sorry, I don't know what {acronym} stands for.")
 
 
-help_list.append(greetings.__doc__)
+help_list.append(acronym_search.__doc__)
 
 
 @app.event(
