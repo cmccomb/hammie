@@ -116,7 +116,7 @@ def branding(say, context):
     say(json.loads(json.dumps(raw_json)))
 
 
-help_list.append(greetings.__doc__)
+help_list.append(branding.__doc__)
 
 
 # Flip a coin and show result as image
