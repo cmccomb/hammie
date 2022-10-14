@@ -43,7 +43,7 @@ help_list.append(greetings.__doc__)
 )
 @app.message(is_acronym)
 def acronym_search(say, context):
-    """What does ASME stand for?: I can help you learn common acronyms in our field."""
+    """🤷 `What does SIG stand for?`: I can help you learn common acronyms in our field."""
     (_, acronym) = context['matches']
     if acronym in ACRONYMS:
         say(f"{acronym}: {ACRONYMS[acronym]}")
@@ -147,8 +147,8 @@ help_list.append(branding.__doc__)
 )
 @app.message(is_coinflip)
 def ask_who(say, context):
-    random.seed()
     """🪙 `flip`, `coin`, `quarter`: I will flip a coin for you."""
+    random.seed()
     if random.random() < 0.5:
         say(json.loads(quarter_heads))
     else:
