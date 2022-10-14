@@ -7,7 +7,7 @@ is_anything = re.compile(r".*")
 is_coinflip = re.compile(r"\b(flip|coin|quarter)\b")
 is_help = re.compile(r"\b(help|about|info)\b")
 is_branding = re.compile(r"(brand|logo|font)")
-is_acronym = re.compile(r"what does (?:[A-Z]){2,} stand for")
+is_acronym = re.compile(r"(w|W)hat does (?:[A-Z]){2,} stand for")
 
 # Textblock
 def text_block(markdown_string):
@@ -52,8 +52,14 @@ ASSETS_LINK = "https://cmu.box.com/shared/static/oynnamlbyjxlmw9tqrqqb4b7d3kwg8w
 
 ACRONYMS = {
     "ASME": "American Society of Mechanical Engineers",
+    "CIE": "Computers and Information in Engineering Conference",
     "IDETC": "International Design Engineering and Technical Conferences",
+    "DAC": "Design Automation Conference, part of IDETC",
+    "DFMLC": "Design for Manufacturing and Life Cycle Conference, part of IDETC",
+    "DTM": "Design Theory and Methdology Conference, part of IDETC",
+    "SEIKM": "Systems Engineering, Information, Knowledge Management Conference, part of CIE",
     "DCC": "Design Computing and Cognition",
     "DED": "Design Engineering Division, part of ASME",
-    "ICED": "International Conference on Engineering Design"
+    "ICED": "International Conference on Engineering Design",
+    "SIG": "Special Interest Group",
 }
