@@ -2,11 +2,17 @@ import re
 import os
 import pandas
 
+
+# Read in acronyms
+acro = pandas.read_csv("data/acronyms.csv")
+ACRONYMS = dict(zip(acro.Acronym, acro.Definition))
+
+# Read in greetings
 with open('data/greetings.txt', 'r') as file:
-    data = file.read().replace("\n", "|")
+    GREETINGS = file.read()
 
 # Matches for checking
-is_greeting = re.compile(r"\b(" + data + r")\b", re.IGNORECASE)
+is_greeting = re.compile(r"\b(" + GREETINGS.replace("\n", "|") + r")\b", re.IGNORECASE)
 is_anything = re.compile(r".*")
 is_coinflip = re.compile(r"\b(flip|coin|quarter)\b")
 is_help = re.compile(r"\b(help|about|info)\b")
@@ -128,7 +134,3 @@ BRANDING_RESPONSE = {
         }
     ]
 }
-
-acro = pandas.read_csv("data/acronyms.csv")
-
-ACRONYMS = dict(zip(acro.Acronym, acro.Definition))
