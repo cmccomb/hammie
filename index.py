@@ -43,14 +43,15 @@ help_list.append(greetings.__doc__)
 )
 @app.message(is_acronym)
 def acronym_search(say, event):
-    """🤷 `What does SIG stand for?`: I can help you learn common acronyms in our field."""
+    """🤷 `What does SIG stand for?`, `list`: I can help you learn common acronyms in our field."""
     if 'text' in event:
         match_groups = is_acronym.search(event['text'])
         acronym = match_groups.group(2)
         if acronym in ACRONYMS:
             say(f"{acronym}: {ACRONYMS[acronym]}")
         else:
-            say(f"Sorry, I don't know what `{acronym}` stands for.")
+            say(f"Sorry, I don't know what `{acronym}` stands for, but you might find a definition [here]("
+                f"https://www.acronymfinder.com/{acronym}.html).")
     else:
         event_string = json.dumps(event, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
         raw_json = {
