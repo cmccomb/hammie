@@ -157,3 +157,11 @@ help_list.append(last_resort.__doc__)
 # Start the app
 if __name__ == "__main__":
     app.start(port=int(os.environ.get("PORT", 3000)))
+
+
+# Ideas
+# 1. Presentation from abstract (go sentence by sentence, search images, generate powerpoint)
+# 2. Literature search (with summarization?)
+# 3. Reimbursement walkthrough (ultimately building up to generating an email to Ying)
+# 4. Fellowships/scholarships list
+# 5. Gifts from hammie
