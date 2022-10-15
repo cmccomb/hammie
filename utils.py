@@ -1,8 +1,11 @@
 import re
 import random
 
+with open('data/greetings.txt', 'r') as file:
+    data = file.read().replace("\n", "|")
+
 # Matches for checking
-is_greeting = re.compile(r"\b(hi|hello|hey|yo)\b", re.IGNORECASE)
+is_greeting = re.compile(r"\b(" + data + r")\b", re.IGNORECASE)
 is_anything = re.compile(r".*")
 is_coinflip = re.compile(r"\b(flip|coin|quarter)\b")
 is_help = re.compile(r"\b(help|about|info)\b")
