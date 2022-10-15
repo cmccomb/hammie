@@ -50,8 +50,8 @@ def acronym_search(say, event):
         if acronym in ACRONYMS:
             say(f"{acronym}: {ACRONYMS[acronym]}")
         else:
-            say(f"Sorry, I don't know what `{acronym}` stands for, but you might find a definition [here]("
-                f"https://www.acronymfinder.com/{acronym}.html).")
+            say(f"Sorry, I don't know what `{acronym}` stands for, but you might find a definition "
+                f"<https://www.acronymfinder.com/{acronym}.html|here>.")
     else:
         event_string = json.dumps(event, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
         raw_json = {
