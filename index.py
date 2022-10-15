@@ -44,8 +44,9 @@ help_list.append(greetings.__doc__)
 @app.message(is_acronym)
 def acronym_search(say, event):
     """🤷 `What does SIG stand for?`: I can help you learn common acronyms in our field."""
-    if 'matches' in event:
-        (_, acronym) = event['matches']
+    if 'text' in event:
+        match_groups = is_acronym.search(event['text'])
+        acronym = match_groups.group(2)
         if acronym in ACRONYMS:
             say(f"{acronym}: {ACRONYMS[acronym]}")
         else:
