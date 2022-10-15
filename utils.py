@@ -1,11 +1,10 @@
 import re
 import os
-import pandas
-
+import csv
 
 # Read in acronyms
-acro = pandas.read_csv("data/acronyms.csv")
-ACRONYMS = dict(zip(acro.Acronym, acro.Definition))
+with open('acronyms.csv') as f:
+    ACRONYMS = dict(filter(None, csv.reader(f)))
 
 # Read in greetings
 with open('data/greetings.txt', 'r') as file:
