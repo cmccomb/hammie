@@ -1,5 +1,6 @@
 import re
-import random
+import os
+import pandas
 
 with open('data/greetings.txt', 'r') as file:
     data = file.read().replace("\n", "|")
@@ -128,25 +129,6 @@ BRANDING_RESPONSE = {
     ]
 }
 
-ACRONYMS = {
-    "ASME": "American Society of Mechanical Engineers",
-    "CIE": "Computers and Information in Engineering Conference, and ASME conference colocated with IDETC",
-    "IDETC": "International Design Engineering and Technical Conferences, an ASME conference",
-    "DAC": "Design Automation Conference, part of IDETC",
-    "DFMLC": "Design for Manufacturing and Life Cycle Conference, part of IDETC",
-    "DTM": "Design Theory and Methdology Conference, part of IDETC",
-    "SEIKM": "Systems Engineering, Information, Knowledge Management Conference, part of CIE",
-    "DCC": "Design Computing and Cognition",
-    "DED": "Design Engineering Division, part of ASME",
-    "ICED": "International Conference on Engineering Design",
-    "SIG": "Special Interest Group",
-    "JMD": "Journal of Mechanical Design, an ASME journal",
-    "JCISE": "Journal of Computers and Information Science in Engineering, an ASME journal",
-    "KYOOT": "Keep your options open, tiger",
-    "VAE": "Variational Autoencoder",
-    "ML": "Machine Learning",
-    "AI": "Artificial Intelligence",
-    "DFAI": "Design for Artificial Intelligence",
-    "AM": "Additive Manufacturing",
-    "DFAM": "Design for Additive Manufacturing",
-}
+acro = pandas.read_csv("data/acronyms.csv")
+
+ACRONYMS = dict(zip(acro.Acronym, acro.Definition))
