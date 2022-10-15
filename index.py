@@ -6,8 +6,8 @@ import dotenv
 import json
 import random
 
-from utils import is_greeting, is_anything, is_coinflip, is_help, quarter_heads, is_branding, quarter_tails, text_block, \
-    LOGOS_LINK, FONTS_LINK, ASSETS_LINK, BRAND_BOOK_LINK, is_acronym, ACRONYMS, BRANDING_RESPONSE
+from utils import is_greeting, is_anything, is_coinflip, is_help, quarter_heads, is_branding, quarter_tails, \
+    text_block, is_acronym, ACRONYMS, BRANDING_RESPONSE, is_all_acronym
 
 help_list = []
 # Set up dotenv
@@ -64,6 +64,26 @@ def acronym_search(say, event):
 help_list.append(acronym_search.__doc__)
 
 
+
+# Greeting
+@app.event(
+    "app_mention",
+    matchers=[lambda event: bool(is_all_acronym.search(event['text']))]
+)
+@app.message(is_all_acronym)
+def all_acronyms(say):
+    raw_json = {
+        "blocks": [text_block("Here are all of the acronyms I know")]
+    }
+
+    sortednames = sorted(ACRONYMS.keys(), key=lambda x: x.lower())
+
+    for key in sortednames:
+        raw_json['blocks'].append(text_block(f"{key}: {ACRONYMS[key]}"))
+    say(raw_json)
+
+
+
 @app.event(
     "app_mention",
     matchers=[lambda event: bool(is_branding.search(event['text']))]
@@ -83,7 +103,7 @@ help_list.append(branding.__doc__)
     matchers=[lambda event: bool(is_coinflip.search(event['text']))]
 )
 @app.message(is_coinflip)
-def ask_who(say, context):
+def ask_who(say):
     """🪙 `flip`, `coin`, `quarter`: I will flip a coin for you."""
     random.seed()
     if random.random() < 0.5:
