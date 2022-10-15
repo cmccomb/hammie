@@ -3,7 +3,7 @@ import os
 import csv
 
 # Read in acronyms
-with open('acronyms.csv') as f:
+with open('data/acronyms.csv') as f:
     ACRONYMS = dict(filter(None, csv.reader(f)))
 
 # Read in greetings
