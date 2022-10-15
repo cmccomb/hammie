@@ -44,11 +44,20 @@ help_list.append(greetings.__doc__)
 @app.message(is_acronym)
 def acronym_search(say, context):
     """🤷 `What does SIG stand for?`: I can help you learn common acronyms in our field."""
-    (_, acronym) = context['matches']
-    if acronym in ACRONYMS:
-        say(f"{acronym}: {ACRONYMS[acronym]}")
+    if 'matches' in context:
+        (_, acronym) = context['matches']
+        if acronym in ACRONYMS:
+            say(f"{acronym}: {ACRONYMS[acronym]}")
+        else:
+            say(f"Sorry, I don't know what `{acronym}` stands for.")
     else:
-        say(f"Sorry, I don't know what `{acronym}` stands for.")
+        context_jstring = json.dumps(context, default=lambda x: "[[ Cannot be serialized ]]", indent="\t")
+        raw_json = {
+            "blocks": [text_block("Sorry, but I have no idea what you mean. Can you try to ask it in a different way? "
+                                  "Here's what I saw: ")]
+        }
+        raw_json['blocks'].append(text_block(f"```context = {context_jstring}```"))
+        say(raw_json)
 
 
 help_list.append(acronym_search.__doc__)
